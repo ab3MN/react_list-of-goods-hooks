@@ -1,13 +1,11 @@
 import { SortType } from '../enums/sortType';
 import { TGoods } from '../types/goodsTypes';
 
-type TSortGoods = (
-  goods: TGoods,
-  sortType: SortType,
-  isReverse: boolean,
-) => TGoods;
+interface ISortGoods {
+  (goods: TGoods, sortType: SortType, isReverse: boolean): TGoods;
+}
 
-const sortGoods: TSortGoods = (goods, sortType, isReverse = false) => {
+const sortGoods: ISortGoods = (goods, sortType, isReverse = false) => {
   if (!sortType && isReverse) {
     return [...goods].reverse();
   }
